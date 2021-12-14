@@ -26,3 +26,21 @@ where start between cast('2021-10-01' as date) and getdate();
 alter table employee_payroll add Gender char(1);
 update employee_payroll set Gender = 'M' where name = 'Naveen' or name = 'John' or name = 'Sai';
 update employee_payroll set Gender = 'F' where name = 'Rani';
+
+/*UC7*/
+alter table employee_payroll alter column Salary float;
+
+select sum(Salary) from employee_payroll where Gender='M' group by Gender;
+select SUM(Salary) from employee_payroll where Gender='F' group by Gender;
+
+select avg(Salary) from employee_payroll where Gender='M' group by Gender;
+select avg(Salary) from employee_payroll where Gender='F' group by Gender;
+
+select min(Salary) from employee_payroll where Gender='M' group by Gender;
+select min(Salary) from employee_payroll where Gender='F' group by Gender;
+
+select max(Salary) from employee_payroll where Gender='M' group by Gender;
+select max(Salary) from employee_payroll where Gender='F' group by Gender;
+
+select count(Salary) from employee_payroll where Gender='M' group by Gender;
+select count(Salary) from employee_payroll where Gender='F' group by Gender;
