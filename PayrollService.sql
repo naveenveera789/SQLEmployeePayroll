@@ -49,3 +49,13 @@ select count(Salary) from employee_payroll where Gender='F' group by Gender;
 alter table employee_payroll add Phone varchar(16);
 alter table employee_payroll add Address varchar(100) default 'TBD';
 alter table employee_payroll add Department varchar(50) NOT NULL default '';
+
+/*UC9*/
+exec sp_rename 'employee_payroll.Salary', 'BasicPay', 'column';
+alter table employee_payroll add Deductions float, TaxablePay float, IncomeTax float, NetPay float;
+update employee_payroll set Phone='6958309476', Address='Bangalore' where Name='John';
+update employee_payroll set Phone='8485098959', Address='Hyderabad' where Name='Naveen';
+update employee_payroll set Phone='9534986760', Address='Hyderabad' where Name='Rani';
+update employee_payroll set Phone='7847847504', Address='Mumbai' where Name='Sai';
+update employee_payroll set Department='Sales', Deductions=1000, TaxablePay=500, IncomeTax=0.1*(BasicPay), NetPay=BasicPay-1500 where Name='John' or Name='Rani';
+update employee_payroll set Department='Marketing', Deductions=1500, TaxablePay=500, IncomeTax=0.15*(BasicPay), NetPay=BasicPay-2000 where Name='Sai' or Name='Naveen';
